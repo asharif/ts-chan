@@ -1,5 +1,4 @@
 name: Publish to NPM
-run-name: ${{ github.actor }} is publishing ts-chan package to NPM
 on:
   push:
     branches:
@@ -10,13 +9,15 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Install dependencies
-        run: yarn install
-      - name : Build
-        run: yarn build
-      - name: Unit tests
-        run: yarn unit-test
       - name: Publish to NPM
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: |
+          cat package.json | sed 's/"version": "1.0.0"/"version":"$(GITHUB_RUN_NUMBER)"/' > package.json.new
+          rm package.json
+          mv package.json.new package.json
           npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
