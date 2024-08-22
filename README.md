@@ -1,3 +1,5 @@
+![pr-workflow](https://github.com/asharif/ts-channel/actions/workflows/pr.yml/badge.svg)
+![publish-workflow](https://github.com/asharif/ts-channel/actions/workflows/publish.yml/badge.svg)
 # ts-chan
 `channel` like structure for TypeScript. Inspired by golang `channels` and Java's `LinkedBlockedingQueue`. Can be used as a `Semaphore` as well.
 
