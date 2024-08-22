@@ -22,4 +22,6 @@ await chan.offer("hello");
 await chan.offer("world"); //<--blocks here as by default channel buffer size is 1
 expect(await chan.take()).toBe("world");
 ```
-See test cases in `src/chan.test.ts` for more use cases
+See test cases in `src/chan.test.ts` for more use cases in the [repo](https://github.com/asharif/ts-channel)
+
+
